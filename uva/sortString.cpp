@@ -3,11 +3,13 @@
 using namespace std;
 
 int main(){
+	char a[1000000]; 
 	string palavra;
 	cin >>palavra;
-
-	sort(palavra.begin(), palavra.end());
-	cout << palavra<<endl;
+	
+	strcpy(a, palavra.c_str());
+//	sort(palavra.begin(), palavra.end());
+	cout << a<<endl;
 
 
 

@@ -2,51 +2,48 @@
 
 using namespace std;
 
-string revert(string p){
-	string s;
-	for(int i=p.size()-1; i>=0; i--){
-		s+=p[i];
-	}
-	return s;
-}
-
 int main(){
 
 	string numbers;
 	string numRevert;
+	char pre[1000000]; 
+	char pos[1000000]; 
+
+        int i; 
+	vector<string> results;
 
 	int numA, numB;
 
 	while(cin>>numbers){
-		if(numbers[0]=='0' && numbers[1]=='\n')
+		if(numbers=="0")
 			break;
-		string pre;
-		string pos;
-		pre=numbers;
+
+		results.clear();
+		results.push_back(numbers);
+
+		strcpy(pre,numbers.c_str());
 		pos="";
 
+		i = 0;
+
+		cout <<"Original number was "<< pre << endl;
 		while(1){
-			
 			sort(pre.begin(), pre.end());
+			
 			numRevert = revert(pre);
 
 			numA = atoi(pre.c_str());
 			numB = atoi(numRevert.c_str());
 			pos = to_string(numB-numA);
 
-			cout <<"Original number was "<< pre << endl;
 			cout <<numB<< " - "<<numA<<" = "<< pos << endl;
-		if(pre!=pos)
-			break;
-		pre=pos;
-
+			results.push_back(pos);
+			if(results[i]==results[i+1])
+				break;
+			pre = pos;
+			i++;
 		}
+		cout <<"Chain length "<<i+1<<endl;
+		cout <<endl;
 	}
 }
-
-/*
-	stringstream buffer;
-	buffer << s;
-	int value;
-	buffer >> value;
-*/
